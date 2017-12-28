@@ -1,0 +1,42 @@
+<div class="container">
+  <h2>{{headerMessege}} Car</h2>
+  <form>
+    <div class="form-group">
+      <label>Brand</label>
+      <input type="text" class="form-control" name="brand" [(ngModel)]="newCar.brand">
+    </div>
+    <div class="form-group">
+      <label>Model</label>
+      <input type="text" class="form-control" name="model" [(ngModel)]="newCar.model">
+    </div>
+    <div class="form-group">
+      <label>Description</label>
+      <textarea class="form-control" [(ngModel)]="newCar.description" name="description"> </textarea>
+    </div>
+    <div class="form-group">
+      <label>Registration Number</label>
+      <input type="text" class="form-control" name="registrationNumber" [(ngModel)]="newCar.registrationNumber">
+    </div>
+    <div class="form-group">
+      <label>Fuel Type</label>
+      <select class="form-control" name="fuelType" [(ngModel)]="newCar.fuelType">
+        <option *ngFor="let fType of fTypes" [value]="fType.value">
+          {{fType.value}}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+        <label>Transmission</label>
+        <select class="form-control" name="transmission" [(ngModel)]="newCar.transmission">
+          <option *ngFor="let trans of transmissions" [value]="trans.value">
+            {{trans.value}}
+          </option>
+        </select>
+      </div>
+
+    <p>
+      <button type="button" class="btn btn-primary" (click)="addCarToData()">Save</button>
+      <button type="button" class="btn btn-warning" (click)="goHome()">Cancel</button>
+    </p>
+  </form>
+</div>

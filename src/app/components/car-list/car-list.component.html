@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="col-md-12">
+    <h1>Car List</h1>
+    <ngb-pagination [collectionSize]="cars.length" [(page)]="page" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
+    <table class="table table-bordered table-striped table-hover">
+    <thead>
+      <tr>
+        <th class="text-center">ID</th>
+        <th class="text-center">Brand</th>
+        <th class="text-center">Model</th>
+        <th class="text-center">Description</th>
+        <th class="text-center">Reg Number</th>
+        <th class="text-center">Fuel Type</th>
+        <th class="text-center">Transmission</th>
+        <th class="text-center">&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let car of cars; let i = index">
+      <tr *ngIf="i >= (page * itemsShown) - itemsShown && i < page * itemsShown">
+        <td>{{ car.id }}</td>
+        <td>{{ car.brand }}</td>
+        <td>{{ car.model }}</td>
+        <td *ngIf="(car.description != '') && (car.description != undefined);else noDescription">
+            {{ car.description }}
+        </td>
+        <ng-template #noDescription><td id='noDescr'>No description available.</td></ng-template>
+        <td>{{ car.registrationNumber }}</td>
+        <td>{{ car.fuelType }}</td>
+        <td>{{ car.transmission }}</td>
+        <td>
+          <button class="btn btn-info" (click)="editCar(car)">Edit</button>
+          <button class="btn btn-danger" (click)="initDeletionModalDialog(car)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button class="btn btn-success" (click)="goForm()">Add Car</button>
+  </div>  
+</div>
